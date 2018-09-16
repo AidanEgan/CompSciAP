@@ -44,3 +44,5 @@ public class randMath {
 			System.out.print(myGroup[z] + " ");
 		}
 	}
+	
+}
