@@ -32,8 +32,14 @@ public class randMath {
 			System.out.print(myList[x] + " ");
 		}
 		System.out.println("\nReversed: ");
+		for (int x = 0; x < (myList.length/2)-1; x++){
+			temp = myList[x];
+			myList[x] = myList[19-x];
+			myList[19-x] = temp;
+			
+		}
 		for (int x = 0; x < myList.length; x++){
-			System.out.print(myList[19-x] + " ");
+			System.out.print(myList[x] + " ");
 		}
 		System.out.println("\n\nFinally here's myGroup once its been replaced with myList:");
 		//Swaps myList and myGroup 
