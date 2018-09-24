@@ -1,0 +1,25 @@
+
+public class howManyDivisors {
+	public static int howManyDivs(int[] numberGrid, int divisor) {
+		int total = 0;
+		for(int i = 0; i<numberGrid.length; i++) {
+			if (numberGrid[i]%divisor == 0) { total++; }
+		}
+		return total;
+	}
+	public static int[] mostMultiples(int[] numberGrid, int[] divGroup) {
+		int[] returner = new int[] {0,0};
+		int most = 0;
+		for(int x = 0; x<divGroup.length; x++) {
+			
+		}
+		return returner;
+	}
+	
+	public static void main(String[] args) {
+		int[] array = new int[] {55,39,6,25,105,18,24,49,14,21,45,98,33,15,28,5,42,100};
+		System.out.println(howManyDivs(array,3));
+	}
+	
+	
+}
