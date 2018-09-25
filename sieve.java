@@ -40,11 +40,15 @@ public class sieve {
 	}
 	
 	public static void main(String[] args){
+		long startTime = System.currentTimeMillis();
 		int sieveLimit = 100000000; // One hundred million
 		int testPrime = 5001923;
 		ArrayList<Integer> siv = new ArrayList<Integer>();
 		siv = sieves(sieveLimit);
 		System.out.println("There are " + siv.size() + " prime numbers less than " + sieveLimit);
+		long stopTime = System.currentTimeMillis();
+	    double elapsedTime = stopTime - startTime;
+	    System.out.println("That took me " + elapsedTime/1000 + " seconds.");
 		binarySearch(siv,testPrime,siv.size(),0);
 	}
 }
