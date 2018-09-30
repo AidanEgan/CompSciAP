@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 public class challenges {
 	public static void main(String[] args) {
@@ -14,17 +13,30 @@ public class challenges {
 				x[y] = (int)(Math.random()*100);
 			}
 		}
+		
+		char[] charArr = new char[(int)(Math.random()*50)];
+		for (int a = 0; a < charArr.length; a++){
+			//(char)(Math.random()*25 + 65)
+			charArr[a] = (char)(Math.random()*25 + 65);
+		}
+		
 		//Find the target value
 		System.out.println(linearSearch(randArr, 8));
 		//Find if there is a majority primes
 		System.out.println(majMatrixPrimes(primesTest));
-		/*Find if inputed word is a palindrome
+		/*Find if inputed word is a palindrome 
 		Scanner in = new Scanner(System.in);
 		System.out.println("Enter a string: ");
 		System.out.println(isPalindrome(in.nextLine()));
 		in.close();*/
 		System.out.println("hi");
-		System.out.println(gcd(29*5,29*7));
+		System.out.println(gcd(10,10));
+		
+		System.out.println();
+		
+		for(int i : lastFive(charArr)){
+			System.out.print(i + " ");
+		}
 		
 	}
 	public static int linearSearch(int[] arr, int search) {
@@ -66,12 +78,34 @@ public class challenges {
 		return returns;
 	}
 	
+	public static int[] lastFive(char[] cArr){
+		int quota = 0;
+		int inc = cArr.length -1;
+		int[] returns = new int[5];
+		while(quota<5 && inc > 0){
+			if(isVowel(cArr[inc])){
+				returns[4-quota] = inc; quota++;
+			}
+			inc--;
+		}
+		return returns;
+	}
+	
+	public static boolean isVowel(char ch){
+		char[] voweList = {'A','E','I','O','U'};
+		for (char a : voweList){
+			if (a == ch) {return true;}
+		}
+		return false;
+	}
+	
+	
 	public static int gcd(int in1, int in2){
 		int a = (in1>in2) ? in1 : in2;
 		int b = (in1>in2) ? in2 : in1;
 		int count = 1;
 		while(count <= Math.ceil(b/2)){
-			if (b%count == 0 && (a%(b/count)==0)){
+			if ((a%((double)b/count)==0)){
 				return (b/count);
 			}
 			count++;
@@ -80,9 +114,9 @@ public class challenges {
 	}
 	
 	public static boolean isPalindrome(String myString){
-		int len = myString.length();
-		for(int a = 0; a < Math.ceil(len/2); a++){
-			if (myString.charAt(a) != myString.charAt(len -a -1)){return false;}
+		char[] str = myString.toCharArray();
+		for(int a = 0; a < Math.ceil(str.length/2); a++){
+			if (str[a] != str[str.length-1-a]){return false;}
 		}
 		return true;
 	}
