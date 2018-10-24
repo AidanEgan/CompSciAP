@@ -12,14 +12,8 @@ public class Number {
 		int digitNum = this.countDigits();
 		int toReverse = num;
 		int reversedNum = 0;
-		System.out.println(toReverse);
-		if(toReverse <10) {
-			return 0;
-		}
 		while(digitNum != 0) {
-			System.out.println("Right here");
 			reversedNum += (int)((toReverse%10)*(Math.pow(10, (digitNum-1))));
-			System.out.println(reversedNum);
 			toReverse = toReverse/10;
 			digitNum -=1;
 		}
@@ -27,6 +21,7 @@ public class Number {
 	}
 	public void reverseME() {
 		//same algrorithm changes the num itself
+		num = this.reverse();
 	}
 	public int countDigits() {
 		//for a num of more than one digit, it returns a count of the number of digits. i.e. 14,235 has 5 digits
@@ -54,9 +49,14 @@ public class Number {
 	public void setNum(int n) {
 		num = n;
 	}
+	public boolean isPalindrome(){
+		return (num == this.reverse());
+	}
 	
 	public static void main (String args[]) {
-		Number n = new Number(358);
+		Number n = new Number(1337);
+		System.out.println(n.getNum());
 		System.out.println(n.reverse());
+		System.out.println(n.isPalindrome());
 	}
 }
