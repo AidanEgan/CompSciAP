@@ -52,11 +52,29 @@ public class Number {
 	public boolean isPalindrome(){
 		return (num == this.reverse());
 	}
+	public boolean isPerfect(){
+		int testPerf = 1;
+		for(int i = 2; i<Math.ceil(Math.sqrt(num)); i++){
+			if (num%i == 0){
+				testPerf += i;
+				testPerf += (num/i);
+			}
+			
+		}
+		if(testPerf == num){
+			return true;
+		}
+		return false; 
+	}
 	
 	public static void main (String args[]) {
 		Number n = new Number(1337);
+		Number n2 = new Number(1234321);
 		System.out.println(n.getNum());
-		System.out.println(n.reverse());
+		System.out.println(n2.reverse());
 		System.out.println(n.isPalindrome());
+		n.setNum(28);
+		System.out.println(n.isPerfect());
+		
 	}
 }
