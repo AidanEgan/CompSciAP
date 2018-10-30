@@ -10,24 +10,63 @@ public class Vector {
 	}
 	
 	public Vector plus(Vector that) {
-		int len;
-		int longer;
-		int len2;
-		if (vec.length < that.data().length) { len = vec.length; len2 = that.data().length; longer =0;} else {len = that.data().length; len2 = vec.length; longer = 1;}
-		double ret[] = new double[len2];
-		for (int i = 0;i < len; i++) {
-			ret[i] = vec[i] + that.data()[i];
+		return (new Vector(this.doMath(that, 1)));
+	}
+	public Vector minus(Vector that){
+		return (new Vector(this.doMath(that, -1)));
+		
+	}
+	
+	public Vector scale(double alpha){
+		for(int y = 0; y<vec.length; y++){
+			vec[y] = alpha*vec[y];
 		}
-		if (longer == 0) {
-			for (int x = len; x <len2; x++) {
-				ret[x] = that.data()[x];
-			}
-		} else {
-			for (int x = len2; x <len; x++) {
-				ret[x] = vec[x];
-			}
+		return this;
+	}
+	
+	public double dot(Vector b){
+		double sum = 0;
+		Vector[] use = findShorter(this,b);
+		for(int i = 0; i<use[0].data().length; i++){
+			sum += (use[0].data()[i]*use[1].data()[i]);
 		}
-		return (new Vector(ret));
+		return sum;
+	}
+	
+	public double magnitude(){
+		return (Math.sqrt(this.dot(this)));
+	}
+	
+	public double[] doMath(Vector that, int i){
+		//Returns array of this, that -> they are now properly formatted.
+		Vector[] use = findShorter(this, that);
+		double ret[] = new double[use[0].data().length];
+		for(int x = 0; x < ret.length; x++){
+			ret[x] = use[0].data()[x] + ((i)*(use[1].data()[x]));
+		}
+		return ret;
+	}
+	
+	public Vector[] findShorter(Vector one, Vector two){
+		//Returns shorter, longer
+		Vector[] arr = {one, two};
+		if(one.data().length <= two.data().length){
+			//makeLonger
+			arr[0] = one.makeLonger(two.data().length);
+		}
+		else{ arr[1] = two.makeLonger(one.data().length); }
+		return arr;
+	}
+	
+	public Vector makeLonger(int length){
+		double[] newLen = new double[length];
+		for(int i = 0; i< (this.data().length); i++){
+			newLen[i] = this.data()[i];
+		}
+		for(int i = this.data().length; i<length;i++){
+			newLen[i] = 0;
+		}
+		return (new Vector(newLen));
 	}
 	
 	public double[] data() {
@@ -43,6 +82,9 @@ public class Vector {
 		double[] var = {1,4,5,4,5,6,7,8};
 		Vector v = new Vector();
 		Vector v2 = new Vector(var);
-		v.plus(v2).returnVec();
+		v.minus(v2).returnVec();
+		System.out.println();
+		System.out.println(v.dot(v2));
+		System.out.println(v.magnitude());
 	}
 }
