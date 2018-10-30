@@ -1,4 +1,3 @@
-
 public class Vector {
 	private double[] vec;
 	public Vector() {
@@ -35,6 +34,28 @@ public class Vector {
 	
 	public double magnitude(){
 		return (Math.sqrt(this.dot(this)));
+	}
+	
+	public double cartesian(int i) {
+		return(this.data()[i]);
+	}
+	
+	public String toString() {
+		String s = "<";
+		for(int x = 0; x < vec.length-1; x++) {
+			s = s + Double.toString(vec[x]) + ", ";
+		}
+		s += Double.toString(vec[vec.length-1]) + ">";
+		return s;
+	}
+	
+	public Vector direction() {
+		double mag = this.magnitude();
+		double[] ret = new double[this.data().length];
+		for(int i = 0; i<ret.length; i++) {
+			ret[i] = (vec[i]/mag);
+		}
+		return (new Vector(ret));
 	}
 	
 	public double[] doMath(Vector that, int i){
@@ -86,5 +107,6 @@ public class Vector {
 		System.out.println();
 		System.out.println(v.dot(v2));
 		System.out.println(v.magnitude());
+		System.out.println(v2.toString());
 	}
 }
