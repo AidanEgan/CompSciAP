@@ -74,16 +74,23 @@ public class LinkedList {
 	}
 	public void insertInOrder(Node m) {
 		//This method assumes list values are in increasing order.
+		Node n = head;
+		while(n.getNext() != null && (m.getData() > n.getNext().getData())){
+			n = n.getNext();
+		}
+		m.setNext(n.getNext());
+		n.setNext(m);
 	}
 	
 	public static void  main(String[] args) {
 		//Define the Nodes I'll be using for tests
-		Node n2 = new Node();
-		Node n1 = new Node(10,n2);
-		Node n = new Node(25,n1);
-		Node newFront = new Node(32);
-		Node newEnd = new Node(19);
-		Node insertNode = new Node(57);
+		Node n2 = new Node(30);
+		Node n1 = new Node(25,n2);
+		Node n = new Node(20,n1);
+		Node newFront = new Node(10);
+		Node newEnd = new Node(35);
+		Node insertNode = new Node(23);
+		Node insertNode2 = new Node(21);
 		
 		//Create a test LinkedList -> <25,10,1>
 		LinkedList l = new LinkedList(n);
@@ -99,7 +106,9 @@ public class LinkedList {
 		System.out.println();
 		//l.removeEnd();
 		//Try the insert
-		l.insertNode(insertNode, 8);
+		l.insertInOrder(insertNode);
+		//Try the other insert
+		l.insertNode(insertNode2, 2);
 		//Print it out again with one less at the end
 		l.print();
 	}
