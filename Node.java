@@ -5,6 +5,10 @@ public class Node {
 		data = 1;
 		next = null;
 	}
+	public Node(int i){
+		data = i;
+		next = null;
+	}
 	public Node(int i, Node n) {
 		data = i;
 		next = n;
