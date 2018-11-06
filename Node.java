@@ -25,4 +25,17 @@ public class Node<type> {
 	public Node<type> getNext() {
 		return next;
 	}
+	
+	//Driver Method
+	public static void main(String[] args){
+		Node<Integer> n = new Node<Integer>();
+		Node<Integer> n3 = new Node<Integer>(25);
+		Node<Integer> n2 = new Node<Integer>(20,n3);
+		n.setData(10);
+		n.setNext(n2);
+		System.out.println(n3.getData());
+		System.out.println(n.getNext().getData());
+		n3.setNext(n);
+		System.out.println(n3.getNext().getData());
+	}
 }
