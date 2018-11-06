@@ -1,28 +1,28 @@
-public class Node {
-	private int data;
-	private Node next;
+public class Node<type> {
+	private type data;
+	private Node<type> next;
 	public Node() {
-		data = 1;
+		data = null;
 		next = null;
 	}
-	public Node(int i){
+	public Node(type i){
 		data = i;
 		next = null;
 	}
-	public Node(int i, Node n) {
+	public Node(type i, Node<type> n) {
 		data = i;
 		next = n;
 	}
-	public void setData(int m) {
+	public void setData(type m) {
 		data = m;
 	}
-	public int getData() {
+	public type getData() {
 		return data;
 	}
-	public void setNext(Node n) {
+	public void setNext(Node<type> n) {
 		next = n;
 	}
-	public Node getNext() {
+	public Node<type> getNext() {
 		return next;
 	}
 }
