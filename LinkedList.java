@@ -1,28 +1,28 @@
 public class LinkedList {
-	private Node head;
+	private Node<Integer> head;
 	
 	public LinkedList() {
 		head = null;
 	}
-	public LinkedList (Node N) {
+	public LinkedList (Node<Integer> N) {
 		head = N;
 	}
 	public void isEmpty() {
 		head = null;
 	}
 	public void print() {
-		Node n = head;
+		Node<Integer> n = head;
 		while(n != null){
 			System.out.print("<" + n.getData() + "> ");
 			n = n.getNext();
 		}
 	}
-	public void insertAtFront(Node N) {
+	public void insertAtFront(Node<Integer> N) {
 		N.setNext(head);
 		head = N;
 	}
-	public void insertAtEnd(Node N) {
-		Node w = head;
+	public void insertAtEnd(Node<Integer> N) {
+		Node<Integer> w = head;
 		while(w.getNext() != null) {
 			w = w.getNext();
 		}
@@ -32,22 +32,22 @@ public class LinkedList {
 		head = head.getNext();
 	}
 	public void removeEnd() {
-		Node n = head;
+		Node<Integer> n = head;
 		while(n.getNext().getNext() != null) {
 			n = n.getNext();
 		}
 		n.setNext(null);
 	}
-	public void removeNode (Node p) {
-		Node prev = head;
+	public void removeNode (Node<Integer> p) {
+		Node<Integer> prev = head;
 		while(prev.getNext() != p){
 			prev = prev.getNext();
 		}
 		prev.setNext(p.getNext());
 	}
 	
-	public int insertNode(Node p, int i){
-		Node n = head;
+	public int insertNode(Node<Integer> p, int i){
+		Node<Integer> n = head;
 		int current = 0;
 		while(current < (i-1)){
 			if(n == null){
@@ -65,16 +65,16 @@ public class LinkedList {
 	
 	public int countNodes() {
 		int numOfNodes = 0;
-		Node temp = head;
+		Node<Integer> temp = head;
 		while(temp != null) {
 			numOfNodes++;
 			temp = temp.getNext();
 		}
 		return numOfNodes;
 	}
-	public void insertInOrder(Node m) {
+	public void insertInOrder(Node<Integer> m) {
 		//This method assumes list values are in increasing order.
-		Node n = head;
+		Node<Integer> n = head;
 		while(n.getNext() != null && (m.getData() > n.getNext().getData())){
 			n = n.getNext();
 		}
@@ -84,13 +84,13 @@ public class LinkedList {
 	
 	public static void  main(String[] args) {
 		//Define the Nodes I'll be using for tests
-		Node n2 = new Node(30);
-		Node n1 = new Node(25,n2);
-		Node n = new Node(20,n1);
-		Node newFront = new Node(10);
-		Node newEnd = new Node(35);
-		Node insertNode = new Node(23);
-		Node insertNode2 = new Node(21);
+		Node<Integer> n2 = new Node<Integer>(30);
+		Node<Integer> n1 = new Node<Integer>(25,n2);
+		Node<Integer> n = new Node<Integer>(20,n1);
+		Node<Integer> newFront = new Node<Integer>(10);
+		Node<Integer> newEnd = new Node<Integer>(35);
+		Node<Integer> insertNode = new Node<Integer>(23);
+		Node<Integer> insertNode2 = new Node<Integer>(21);
 		
 		//Create a test LinkedList -> <25,10,1>
 		LinkedList l = new LinkedList(n);
