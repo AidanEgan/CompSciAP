@@ -32,13 +32,29 @@ public class LinkedList<type> {
 		head = head.getNext();
 	}
 	public void removeEnd() {
+		Node<type> backer = null;
 		Node<type> n = head;
-		while(n.getNext().getNext() != null) {
+		while(n.getNext() != null) {
+			backer = n;
 			n = n.getNext();
 		}
-		n.setNext(null);
+		backer.setNext(null);
 	}
-	public void removeNode (Node<type> p) {
+	public int removeNode(type data){
+		Node<type> backer = null;
+		Node<type> snaker = head;
+		while(snaker != null){
+			if(snaker.getData() == data){
+				backer.setNext(snaker.getNext());
+				return 1;
+			}
+			backer = snaker;
+			snaker = snaker.getNext();
+		}
+		System.out.println(data + " does not exist in the linked list.");
+		return 0;
+	}
+	public void removeNodeByAddress (Node<type> p) {
 		Node<type> prev = head;
 		while(prev.getNext() != p){
 			prev = prev.getNext();
@@ -89,6 +105,8 @@ public class LinkedList<type> {
 	}
 	public void insertInOrder(Node<Integer> m) {
 		//This method assumes list values are in increasing order.
+		//Makes the assumption we are dealing with ints, will break otherwise
+		@SuppressWarnings("unchecked")
 		Node<Integer> n = (Node<Integer>) head;
 		while(n.getNext() != null && (m.getData() > n.getNext().getData())){
 			n = n.getNext();
@@ -124,6 +142,7 @@ public class LinkedList<type> {
 		l.insertInOrder(insertNode);
 		//Try the other insert
 		l.insertNode(insertNode2, 2);
+		//l.removeEnd();
 		//Print it out again with one less at the end
 		l.print();
 	}
