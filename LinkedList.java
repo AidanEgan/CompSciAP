@@ -1,28 +1,28 @@
-public class LinkedList {
-	private Node<Integer> head;
+public class LinkedList<type> {
+	private Node<type> head;
 	
 	public LinkedList() {
 		head = null;
 	}
-	public LinkedList (Node<Integer> N) {
+	public LinkedList (Node<type> N) {
 		head = N;
 	}
 	public void isEmpty() {
 		head = null;
 	}
 	public void print() {
-		Node<Integer> n = head;
+		Node<type> n = head;
 		while(n != null){
 			System.out.print("<" + n.getData() + "> ");
 			n = n.getNext();
 		}
 	}
-	public void insertAtFront(Node<Integer> N) {
+	public void insertAtFront(Node<type> N) {
 		N.setNext(head);
 		head = N;
 	}
-	public void insertAtEnd(Node<Integer> N) {
-		Node<Integer> w = head;
+	public void insertAtEnd(Node<type> N) {
+		Node<type> w = head;
 		while(w.getNext() != null) {
 			w = w.getNext();
 		}
@@ -32,22 +32,22 @@ public class LinkedList {
 		head = head.getNext();
 	}
 	public void removeEnd() {
-		Node<Integer> n = head;
+		Node<type> n = head;
 		while(n.getNext().getNext() != null) {
 			n = n.getNext();
 		}
 		n.setNext(null);
 	}
-	public void removeNode (Node<Integer> p) {
-		Node<Integer> prev = head;
+	public void removeNode (Node<type> p) {
+		Node<type> prev = head;
 		while(prev.getNext() != p){
 			prev = prev.getNext();
 		}
 		prev.setNext(p.getNext());
 	}
 	
-	public int insertNode(Node<Integer> p, int i){
-		Node<Integer> n = head;
+	public int insertNode(Node<type> p, int i){
+		Node<type> n = head;
 		int current = 0;
 		while(current < (i-1)){
 			if(n == null){
@@ -65,7 +65,7 @@ public class LinkedList {
 	
 	public int countNodes() {
 		int numOfNodes = 0;
-		Node<Integer> temp = head;
+		Node<type> temp = head;
 		while(temp != null) {
 			numOfNodes++;
 			temp = temp.getNext();
@@ -74,7 +74,7 @@ public class LinkedList {
 	}
 	public void insertInOrder(Node<Integer> m) {
 		//This method assumes list values are in increasing order.
-		Node<Integer> n = head;
+		Node<Integer> n = (Node<Integer>) head;
 		while(n.getNext() != null && (m.getData() > n.getNext().getData())){
 			n = n.getNext();
 		}
@@ -93,7 +93,7 @@ public class LinkedList {
 		Node<Integer> insertNode2 = new Node<Integer>(21);
 		
 		//Create a test LinkedList -> <25,10,1>
-		LinkedList l = new LinkedList(n);
+		LinkedList<Integer> l = new LinkedList <Integer>(n);
 		//Test the class' methods
 		//Insert a Node of value 35 at the front
 		l.insertAtFront(newFront);
