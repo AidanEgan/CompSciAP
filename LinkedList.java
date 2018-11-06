@@ -46,6 +46,21 @@ public class LinkedList<type> {
 		prev.setNext(p.getNext());
 	}
 	
+	public Node<type> getNode(int i){
+		Node<type> n = head;
+		int current = 0;
+		while(current < (i-1)){
+			if(n == null){
+				System.out.println("Index does not exist");
+				return null;
+			}else{
+				n = n.getNext();
+			}
+			current++;
+		}
+		return n;
+	}
+	
 	public int insertNode(Node<type> p, int i){
 		Node<type> n = head;
 		int current = 0;
