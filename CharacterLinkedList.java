@@ -16,30 +16,31 @@ public class CharacterLinkedList {
 		s.close();
 		int last = 0;
 		while(input[last] != ' '){
-			System.out.print(input[last] + " ");
 			last++;
 		}
-		Node<LinkedList<Character>> one = new Node<LinkedList<Character>>(addLinkedList(input, 0,last-1));
+		Node<LinkedList<Character>> one = new Node<LinkedList<Character>>(addLinkedList(input, 0,last));
 		LinkedList<LinkedList<Character>> MasterLinkedList = new LinkedList<LinkedList<Character>>(one);
-		System.out.println("\n" + MasterLinkedList.getNode(0));
-		for(int i = last; i<input.length; i++){
-			System.out.print(input[i] + " ");
-			if(input[i] == ' ' || i == input.length-1){
-				//System.out.print(" huh ");
-				MasterLinkedList.insertAtEnd(new Node<LinkedList<Character>>(addLinkedList(input, last, i+1)));
-				last = i+1;
+		int i = last+1;
+		while(i<input.length){
+			if(input[i] == ' '){
+				MasterLinkedList.insertAtEnd(new Node<LinkedList<Character>>(addLinkedList(input, last+1, i)));
+				last = i;
+				i = i+1;
 			}
+			if(i == input.length-1) {
+				MasterLinkedList.insertAtEnd(new Node<LinkedList<Character>>(addLinkedList(input, last+1, i+1)));
+			}
+			i++;
 		}
 		MasterLinkedList.print();
 		System.out.println();
 		//System.out.println(MasterLinkedList.getNode(1));
 		//System.out.println(MasterLinkedList.getNode(2));
 		//System.out.println(MasterLinkedList.getNode(3));
-		MasterLinkedList.getNode(1).getData().print();
-		System.out.println("Hwer");
-		MasterLinkedList.getNode(2).getData().print();
-		System.out.println("Hwer");
-		MasterLinkedList.getNode(3).getData().print();
+		for(int x = 1; x<=MasterLinkedList.countNodes(); x++) {
+			MasterLinkedList.getNode(x).getData().print();
+			System.out.println();
+		}
 	}
 	
 }
