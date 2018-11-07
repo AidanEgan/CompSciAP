@@ -1,3 +1,4 @@
+mport java.util.Scanner;
 public class LinkedList<type> {
 	private Node<type> head;
 	
@@ -7,8 +8,8 @@ public class LinkedList<type> {
 	public LinkedList (Node<type> N) {
 		head = N;
 	}
-	public void isEmpty() {
-		head = null;
+	public boolean isEmpty() {
+		return (head == null);
 	}
 	public void print() {
 		Node<type> n = head;
@@ -16,6 +17,9 @@ public class LinkedList<type> {
 			System.out.print("<" + n.getData() + "> ");
 			n = n.getNext();
 		}
+	}
+	public void instantiate(Node<type> N) {
+		head = N;
 	}
 	public void insertAtFront(Node<type> N) {
 		N.setNext(head);
@@ -32,29 +36,13 @@ public class LinkedList<type> {
 		head = head.getNext();
 	}
 	public void removeEnd() {
-		Node<type> backer = null;
 		Node<type> n = head;
-		while(n.getNext() != null) {
-			backer = n;
+		while(n.getNext().getNext() != null) {
 			n = n.getNext();
 		}
-		backer.setNext(null);
+		n.setNext(null);
 	}
-	public int removeNode(type data){
-		Node<type> backer = null;
-		Node<type> snaker = head;
-		while(snaker != null){
-			if(snaker.getData() == data){
-				backer.setNext(snaker.getNext());
-				return 1;
-			}
-			backer = snaker;
-			snaker = snaker.getNext();
-		}
-		System.out.println(data + " does not exist in the linked list.");
-		return 0;
-	}
-	public void removeNodeByAddress (Node<type> p) {
+	public void removeNode (Node<type> p) {
 		Node<type> prev = head;
 		while(prev.getNext() != p){
 			prev = prev.getNext();
@@ -105,7 +93,6 @@ public class LinkedList<type> {
 	}
 	public void insertInOrder(Node<Integer> m) {
 		//This method assumes list values are in increasing order.
-		//Makes the assumption we are dealing with ints, will break otherwise
 		@SuppressWarnings("unchecked")
 		Node<Integer> n = (Node<Integer>) head;
 		while(n.getNext() != null && (m.getData() > n.getNext().getData())){
@@ -117,32 +104,46 @@ public class LinkedList<type> {
 	
 	public static void  main(String[] args) {
 		//Define the Nodes I'll be using for tests
-		Node<Integer> n2 = new Node<Integer>(30);
+		/*Node<Integer> n2 = new Node<Integer>(30);
 		Node<Integer> n1 = new Node<Integer>(25,n2);
 		Node<Integer> n = new Node<Integer>(20,n1);
 		Node<Integer> newFront = new Node<Integer>(10);
 		Node<Integer> newEnd = new Node<Integer>(35);
 		Node<Integer> insertNode = new Node<Integer>(23);
 		Node<Integer> insertNode2 = new Node<Integer>(21);
-		
+		*/
 		//Create a test LinkedList -> <25,10,1>
-		LinkedList<Integer> l = new LinkedList <Integer>(n);
+		LinkedList<String> l = new LinkedList <String>();
+		
+		System.out.print("Enter numbers and when done enter end");
+		Scanner s = new Scanner(System.in);
+		String in = s.nextLine();
+		while(!in.equals("end")) {
+			if(l.isEmpty()) {
+				//l.instantiate(new Node<Integer>(Integer.parseInt(in)));
+				l.instantiate(new Node<String>(in));
+			}else {
+				//l.insertAtEnd(new Node<Integer>(Integer.parseInt(in)));
+				l.insertAtEnd(new Node<String>(in));
+			}
+			in = s.nextLine();
+		}
+		s.close();
 		//Test the class' methods
 		//Insert a Node of value 35 at the front
-		l.insertAtFront(newFront);
+		//l.insertAtFront(newFront);
 		//Should return a 4
 		System.out.println(l.countNodes());
 		//Insert a value of 19 at the end
-		l.insertAtEnd(newEnd);
+		//l.insertAtEnd(newEnd);
 		//Print out the LinkedList so far
 		l.print();
 		System.out.println();
 		//l.removeEnd();
 		//Try the insert
-		l.insertInOrder(insertNode);
+		//l.insertInOrder(insertNode);
 		//Try the other insert
-		l.insertNode(insertNode2, 2);
-		//l.removeEnd();
+		//l.insertNode(insertNode2, 2);
 		//Print it out again with one less at the end
 		l.print();
 	}
