@@ -32,6 +32,7 @@ public class BinaryTree {
 	
 	public void printVertically(TreeNode p) {
 		//ArrayList<Integer> a = new ArrayList<Integer>();
+		System.out.print(p.getData() + " ");
 		if (p.getLeft() != null) {
 			printVertically(p.getLeft());
 		}
@@ -42,5 +43,16 @@ public class BinaryTree {
 	
 	public boolean isEmpty() {
 		return (root == null);
+	}
+	public static void main(String[] args) {
+		//Example tree 15-2-7-9-20-25-30-1-31-13
+		//New Tree 5,20,4,6,22,25,2,7,21,23,30,32
+		int[] nodeData = {5,20,4,6,22,25,2,7,21,23,30,32};
+		TreeNode t1 = new TreeNode(10);
+		BinaryTree tre = new BinaryTree(t1);
+		for (int i = 0; i<nodeData.length; i++) {
+			tre.addNodeLeaf(new TreeNode(nodeData[i]));
+		}
+		tre.printVertically(t1);
 	}
 }
