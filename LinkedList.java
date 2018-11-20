@@ -1,4 +1,4 @@
-mport java.util.Scanner;
+import java.util.Scanner;
 public class LinkedList<type> {
 	private Node<type> head;
 	
@@ -17,9 +17,6 @@ public class LinkedList<type> {
 			System.out.print("<" + n.getData() + "> ");
 			n = n.getNext();
 		}
-	}
-	public void instantiate(Node<type> N) {
-		head = N;
 	}
 	public void insertAtFront(Node<type> N) {
 		N.setNext(head);
@@ -113,19 +110,13 @@ public class LinkedList<type> {
 		Node<Integer> insertNode2 = new Node<Integer>(21);
 		*/
 		//Create a test LinkedList -> <25,10,1>
-		LinkedList<String> l = new LinkedList <String>();
-		
-		System.out.print("Enter numbers and when done enter end");
+		System.out.print("Enter numbers and when done enter end:\n");
 		Scanner s = new Scanner(System.in);
 		String in = s.nextLine();
-		while(!in.equals("end")) {
-			if(l.isEmpty()) {
-				//l.instantiate(new Node<Integer>(Integer.parseInt(in)));
-				l.instantiate(new Node<String>(in));
-			}else {
-				//l.insertAtEnd(new Node<Integer>(Integer.parseInt(in)));
-				l.insertAtEnd(new Node<String>(in));
-			}
+		LinkedList<Integer> l = new LinkedList <Integer>(new Node<Integer>(Integer.parseInt(in)));
+		in = s.nextLine();
+		while(!in.contains("end")) {
+			l.insertAtEnd(new Node<Integer>(Integer.parseInt(in)));
 			in = s.nextLine();
 		}
 		s.close();
@@ -138,13 +129,13 @@ public class LinkedList<type> {
 		//l.insertAtEnd(newEnd);
 		//Print out the LinkedList so far
 		l.print();
-		System.out.println();
+		//System.out.println();
 		//l.removeEnd();
 		//Try the insert
 		//l.insertInOrder(insertNode);
 		//Try the other insert
 		//l.insertNode(insertNode2, 2);
 		//Print it out again with one less at the end
-		l.print();
+		//l.print();
 	}
 }
