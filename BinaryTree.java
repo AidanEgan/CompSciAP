@@ -26,6 +26,18 @@ public class BinaryTree {
 			backer.setRight(p);
 		}
 	}
+	
+	//Count Nodes
+	public int countNodes(TreeNode p, int num){
+		if (p.getLeft() != null) {
+			num = countNodes(p.getLeft(),num+1);
+		}
+		if(p.getRight() != null) {
+			num = countNodes(p.getRight(),num+1);
+		}
+		return num;
+	}
+	
 	//Tree Height
 	public int height(TreeNode p){
 		if (p == null){
@@ -42,9 +54,9 @@ public class BinaryTree {
 	//Part of Breadth-First Search
 	public void printOneRow (TreeNode p ,int level){ 
 		if(p != null){
-	        if (level == 1) 
+	        if (level == 1){ 
 	            System.out.print(p.getData() + " "); 
-	        else { 
+	        }else{ 
 	            printOneRow(p.getLeft(), level-1); 
 	            printOneRow(p.getRight(), level-1); 
 	        } 
@@ -53,8 +65,7 @@ public class BinaryTree {
 	
 	//Breadth-First Search:
 	public void printByRow(){
-		int Height = this.height(root);
-		for(int i = 1; i<=Height; i++){
+		for(int i = 1; i<=(this.height(root)); i++){
 			System.out.print(i + ": ");
 			this.printOneRow(root,i);
 			System.out.println();
@@ -100,7 +111,7 @@ public class BinaryTree {
 		return (root == null);
 	}
 	public static void main(String[] args) {
-		//Example tree 15-2-7-9-20-25-30-1-31-13
+		//Example tree 15,2,7,9,20,25,30,1,31,13
 		//New Tree 10,5,20,4,6,18,25,2,7,16,23,30,32
 		//Tree Three 25,15,50,10,22,35,70,4,12,18,24,31,44,66,90
 		int[] nodeData = {15,50,10,22,35,70,4,12,18,24,31,44,66,90};
@@ -109,13 +120,14 @@ public class BinaryTree {
 		for (int i = 0; i<nodeData.length; i++) {
 			tre.addNodeLeaf(new TreeNode(nodeData[i]));
 		}
-		System.out.println("PreOrder:");
+		System.out.print("PreOrder: ");
 		tre.printPreOrder(t1);
-		System.out.println("InOrder:");
+		System.out.print("\nInOrder: ");
 		tre.printInOrder(t1);
-		System.out.println("PostOrder:");
+		System.out.print("\nPostOrder: ");
 		tre.printPostOrder(t1);
-		System.out.println("\n");
+		System.out.println("\n\nBreadth-First Search:");
 		tre.printByRow();
+		System.out.println("\nCount Nodes: \n" + tre.countNodes(t1,1));
 	}
 }
