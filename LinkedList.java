@@ -34,10 +34,12 @@ public class LinkedList<type> {
 	}
 	public void removeEnd() {
 		Node<type> n = head;
-		while(n.getNext().getNext() != null) {
+		Node<type> backer = null;
+		while(n.getNext()!= null) {
+			backer = n;
 			n = n.getNext();
 		}
-		n.setNext(null);
+		backer.setNext(null);
 	}
 	public void removeNode (Node<type> p) {
 		Node<type> prev = head;
@@ -62,21 +64,20 @@ public class LinkedList<type> {
 		return n;
 	}
 	
-	public int insertNode(Node<type> p, int i){
-		Node<type> n = head;
-		int current = 0;
-		while(current < (i-1)){
-			if(n == null){
-				System.out.println("Index does not exist");
-				return 0;
-			}else{
-				n = n.getNext();
+	public void insertNode(Node<type> p, type m){
+		//Inserts Node before Node with the data in p
+		Node<type> snaker = head;
+		Node<type> backer = null;
+		while(snaker != null){		
+			if(snaker.getData() == m){
+				backer.setNext(p);
+				p.setNext(snaker);
+				return;
 			}
-			current++;
+			backer = snaker;
+			snaker = snaker.getNext();
 		}
-		p.setNext(n.getNext());
-		n.setNext(p);
-		return 1;
+		System.out.println("There is no Node with the data inputted");
 	}
 	
 	public int countNodes() {
@@ -125,6 +126,7 @@ public class LinkedList<type> {
 		//l.insertAtFront(newFront);
 		//Should return a 4
 		System.out.println(l.countNodes());
+		l.insertNode(new Node<Integer>(12), 15);
 		//Insert a value of 19 at the end
 		//l.insertAtEnd(newEnd);
 		//Print out the LinkedList so far
