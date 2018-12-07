@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class BinaryTree {
 	private TreeNode root;
 	
@@ -26,7 +28,6 @@ public class BinaryTree {
 			backer.setRight(p);
 		}
 	}
-	
 	//Count Nodes
 	public int countNodes(TreeNode p, int num){
 		if (p.getLeft() != null) {
@@ -115,19 +116,38 @@ public class BinaryTree {
 		//New Tree 10,5,20,4,6,18,25,2,7,16,23,30,32
 		//Tree Three 25,15,50,10,22,35,70,4,12,18,24,31,44,66,90
 		int[] nodeData = {15,50,10,22,35,70,4,12,18,24,31,44,66,90};
+		
 		TreeNode t1 = new TreeNode(25);
 		BinaryTree tre = new BinaryTree(t1);
 		for (int i = 0; i<nodeData.length; i++) {
 			tre.addNodeLeaf(new TreeNode(nodeData[i]));
 		}
+		
+		//Have user input the data
+		System.out.print("Enter numbers and when done enter end:\n");
+		Scanner s = new Scanner(System.in);
+		String in = s.nextLine();
+		BinaryTree t2 = new BinaryTree(new TreeNode(Integer.parseInt(in)));
+		in = s.nextLine();
+		while(!in.contains("end")) {
+			t2.addNodeLeaf(new TreeNode(Integer.parseInt(in)));
+			in = s.nextLine();
+		}
+		s.close();
+		//End user input data
+		
 		System.out.print("PreOrder: ");
-		tre.printPreOrder(t1);
+		//tre.printPreOrder(t1);
+		t2.printPreOrder(t2.root);
 		System.out.print("\nInOrder: ");
-		tre.printInOrder(t1);
+		//tre.printInOrder(t1);
+		t2.printInOrder(t2.root);
 		System.out.print("\nPostOrder: ");
-		tre.printPostOrder(t1);
+		//tre.printPostOrder(t1);
+		t2.printPostOrder(t2.root);
 		System.out.println("\n\nBreadth-First Search:");
-		tre.printByRow();
-		System.out.println("\nCount Nodes: \n" + tre.countNodes(t1,1));
+		//tre.printByRow();
+		t2.printByRow();
+		System.out.println("\nCount Nodes: \n" + t2.countNodes(t2.root,1));
 	}
 }
