@@ -1,5 +1,25 @@
 import java.util.Scanner;
-public class LinkedList<type> {
+//Make that stack stuff
+
+interface Stack<object> {
+	void push(object other);
+	boolean isEmpty();
+	object pop();
+
+}
+
+interface Queue<object>{
+	void enqueue(object other);
+	boolean isEmpty();
+	Object dequeue();
+}
+
+//end stack stuff
+
+
+
+
+public class LinkedList<type> implements Stack<Node<type>>, Queue<Node<type>>{
 	private Node<type> head;
 	
 	public LinkedList() {
@@ -139,5 +159,25 @@ public class LinkedList<type> {
 		//l.insertNode(insertNode2, 2);
 		//Print it out again with one less at the end
 		//l.print();
+		
+	}
+	//This is the queue interface
+	public void enqueue(Node<type> other) {
+		// TODO Auto-generated method stub
+		
+	}
+	public Object dequeue() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	//This is the stack interface
+	public void push(Node<type> other) {
+		// TODO Auto-generated method stub
+		
+	}
+	public Node<type> pop() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
