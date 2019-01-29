@@ -1,25 +1,24 @@
-import java.util.Scanner;
+import java.util.*;
 //Make that stack stuff
 
 interface Stack<object> {
 	void push(object other);
 	boolean isEmpty();
 	object pop();
-
 }
 
 interface Queue<object>{
 	void enqueue(object other);
 	boolean isEmpty();
-	Object dequeue();
+	object dequeue();
 }
 
 //end stack stuff
 
 
-
-
 public class LinkedList<type> implements Stack<Node<type>>, Queue<Node<type>>{
+	//Initialize Stack and Queue
+	
 	private Node<type> head;
 	
 	public LinkedList() {
@@ -163,21 +162,20 @@ public class LinkedList<type> implements Stack<Node<type>>, Queue<Node<type>>{
 	}
 	//This is the queue interface
 	public void enqueue(Node<type> other) {
-		// TODO Auto-generated method stub
+		this.insertAtFront(other);
 		
 	}
-	public Object dequeue() {
-		// TODO Auto-generated method stub
-		return null;
+	public Node<type> dequeue() {
+		Node<type> returns = this.getNode(this.countNodes());
+		this.removeEnd();
+		return returns;
 	}
 	
 	//This is the stack interface
 	public void push(Node<type> other) {
-		// TODO Auto-generated method stub
-		
+		this.insertAtEnd(other);;
 	}
 	public Node<type> pop() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.dequeue();
 	}
 }
