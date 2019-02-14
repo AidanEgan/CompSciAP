@@ -146,10 +146,24 @@ public class LinkedList<type> implements Stack<Node<type>>, Queue<Node<type>>{
 		//Should return a 4
 		System.out.println(l.countNodes());
 		l.insertNode(new Node<Integer>(12), 15);
+		
+		//Test the Interface
+		l.enqueue(new Node<Integer>(13));
+		l.push(new Node<Integer>(115));
+		System.out.println();
+		l.print();
+		l.dequeue();
+		l.pop();
+		System.out.println();
+		l.print();
+		
+		
+		
+		
 		//Insert a value of 19 at the end
 		//l.insertAtEnd(newEnd);
 		//Print out the LinkedList so far
-		l.print();
+		//l.print();
 		//System.out.println();
 		//l.removeEnd();
 		//Try the insert
@@ -162,20 +176,22 @@ public class LinkedList<type> implements Stack<Node<type>>, Queue<Node<type>>{
 	}
 	//This is the queue interface
 	public void enqueue(Node<type> other) {
-		this.insertAtFront(other);
+		this.insertAtEnd(other);
 		
 	}
 	public Node<type> dequeue() {
-		Node<type> returns = this.getNode(this.countNodes());
-		this.removeEnd();
+		Node<type> returns = this.getNode(0);
+		this.removeHead();
 		return returns;
 	}
 	
 	//This is the stack interface
 	public void push(Node<type> other) {
-		this.insertAtEnd(other);;
+		this.insertAtEnd(other);
 	}
 	public Node<type> pop() {
-		return this.dequeue();
+		Node<type> returns = this.getNode(this.countNodes());
+		this.removeEnd();
+		return returns;
 	}
 }
