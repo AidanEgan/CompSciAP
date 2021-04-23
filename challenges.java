@@ -1,4 +1,4 @@
-import java.util.Scanner;
+//import java.util.Scanner;
 public class challenges {
 	public static void main(String[] args) {
 		int[] randArr = new int[(int) (Math.random()*500)];

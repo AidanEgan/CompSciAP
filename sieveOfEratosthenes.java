@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class sieve {
+public class sieveOfEratosthenes {
 	
 	public static ArrayList<Integer> sieves(int limit){
 		boolean[] allNums = new boolean[limit-1];
